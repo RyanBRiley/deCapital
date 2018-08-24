@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SignUpFormContainer from '../../ui/signupform/SignUpFormContainer'
 
-class SignUp extends Component {
+class Apply extends Component {
   render() {
     return(
       <main className="container">
@@ -17,4 +17,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp
+export default Apply

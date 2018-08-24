@@ -22,10 +22,18 @@ const history = syncHistoryWithStore(browserHistory, store)
 getWeb3
 .then(results => {
   console.log('Web3 initialized!')
-})
-.catch(() => {
-  console.log('Error in web3 initialization.')
-})
+  const state = store.getState()
+  const web3 = state.web3.web3Instance
+  console.log(web3)
+  var Loans = web3.eth.accounts
+  console.log(Loans)
+// console.log(web3)
+
+
+
+
+
+// console.log(Loans)
 
 ReactDOM.render((
     <Provider store={store}>
@@ -33,7 +41,7 @@ ReactDOM.render((
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
           <Route path="borrow" component={Borrow} />
-          <Route path="lend" component={Lend} />
+          <Route path="lend" loans={Loans} component={Lend} />
           <Route path="about" component={About} />
         </Route>
       </Router>
@@ -41,3 +49,8 @@ ReactDOM.render((
   ),
   document.getElementById('root')
 )
+
+})
+.catch((e) => {
+  console.log('Error in web3 initialization.', e)
+})
