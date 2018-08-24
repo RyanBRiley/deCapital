@@ -7,9 +7,8 @@ class Lend extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <h1>Profile</h1>
-            <p>Edit your account details here.</p>
-        
+            <h1>Lend Capital</h1>
+            <p>Want to earn interest on your Ethereum investment? Lend to a borrower in need</p>    
           </div>
         </div>
       </main>
