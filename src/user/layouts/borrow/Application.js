@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SignUpFormContainer from '../../ui/signupform/SignUpFormContainer'
+import BorrowFormContainer from '../../ui/borrowForm/BorrowFormContainer'
 
 class Apply extends Component {
   render() {
@@ -9,7 +9,7 @@ class Apply extends Component {
           <div className="pure-u-1-1">
             <h1>Borrow Capital</h1>
             <p>Need Capital? Apply today for a crowd-sourced Ethereum loan</p>
-            <SignUpFormContainer />
+            <BorrowFormContainer />
           </div>
         </div>
       </main>

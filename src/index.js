@@ -11,6 +11,7 @@ import Home from './layouts/home/Home'
 import About from './layouts/about/About'
 import Borrow from './user/layouts/borrow/Application'
 import Lend from './user/layouts/lend/Lend'
+import Applied from './user/layouts/borrow/Applied'
 
 // Redux Store
 import store from './store'
@@ -22,18 +23,10 @@ const history = syncHistoryWithStore(browserHistory, store)
 getWeb3
 .then(results => {
   console.log('Web3 initialized!')
-  const state = store.getState()
-  const web3 = state.web3.web3Instance
-  console.log(web3)
-  var Loans = web3.eth.accounts
-  console.log(Loans)
-// console.log(web3)
-
-
-
-
-
-// console.log(Loans)
+})
+.catch((e) => {
+  console.log('Error in web3 initialization.', e)
+})
 
 ReactDOM.render((
     <Provider store={store}>
@@ -41,8 +34,9 @@ ReactDOM.render((
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
           <Route path="borrow" component={Borrow} />
-          <Route path="lend" loans={Loans} component={Lend} />
+          <Route path="lend" component={Lend} />
           <Route path="about" component={About} />
+          <Route path="applied" component={Applied} />
         </Route>
       </Router>
     </Provider>
@@ -50,7 +44,4 @@ ReactDOM.render((
   document.getElementById('root')
 )
 
-})
-.catch((e) => {
-  console.log('Error in web3 initialization.', e)
-})
+
