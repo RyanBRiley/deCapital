@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { lend } from '../../ui/lend/LoanActions'
 
 import Loan from '../../ui/lend/Loan'
 
@@ -23,7 +24,7 @@ class Lend extends Component {
                 {this.props.loans.map((loan, i) => {
                   return (
                   
-                    <Loan key={i} loan={loan} />
+                    <Loan key={i} loan={loan} onFundClick={lend}/>
                 
                   )
                 })

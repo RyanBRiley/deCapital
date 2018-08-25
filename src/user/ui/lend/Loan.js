@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import store from '../../../store'
-
+import {lend} from '../../ui/lend/LoanActions'
 class Loan extends Component {
   
 
@@ -8,16 +8,11 @@ class Loan extends Component {
 //     this.setState({amount: event.target.value })
 //   }
 
-//   handleSubmit(event) {
-//     event.preventDefault()
-
-//     if (this.state.amount.length < 2)
-//     {
-//       return alert('Please enter an amount in Ether')
-//     }
-
-//     this.props.onLoanSubmit(this.state.amount)
-//   }
+  handleClick(event) {
+      console.log('this.props.onFundClicl: ', this.props.onFundClick)
+      console.log(this.props.loan.id)
+      lend(this.props.loan.id)
+  }
 
   render() {
     return(
