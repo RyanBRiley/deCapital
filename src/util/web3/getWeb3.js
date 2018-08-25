@@ -44,10 +44,10 @@ let getWeb3 = new Promise(function(resolve, reject) {
               })
             )
           }
-          console.log('loanCount: ', count.toNumber())
+          // console.log('loanCount: ', count.toNumber())
         })
         console.log('Contract Deployed')
-        console.log('allLoans: ', allLoans)
+        // console.log('allLoans: ', allLoans)
 
         // resolve(store.dispatch(loansInitialized(results)))
     })  

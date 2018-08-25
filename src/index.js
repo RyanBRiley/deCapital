@@ -25,7 +25,7 @@ getWeb3
 .then(results => {
   console.log('Web3 initialized!')
   
-  console.log('store: ', store.getState())
+  // console.log('store: ', store.getState())
 })
 .catch((e) => {
   console.log('Error in web3 initialization.', e)
