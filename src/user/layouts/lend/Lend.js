@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import store from '../../../store'
+
+import Loan from '../../ui/lend/Loan'
 
 class Lend extends Component {
   render() {
@@ -11,17 +12,24 @@ class Lend extends Component {
             <h1>Lend Capital</h1>
             <p>Want to earn interest on your Ethereum investment? Lend to a borrower in need</p>
             {this.props.loans && 
-            <ul>
-              {this.props.loans.map((loan, i) => {
-                return (
-                <li key={i}>
-                  Loan id: {loan.id}, 
-                  Requested Amount: {store.getState().web3.web3Instance.fromWei(loan.amount, 'ether')}
-                </li>
-                )
-              })
-            }
-             </ul>
+            <table id="loans" style={{ width: '100%'}}>
+              <tbody>
+              <tr>
+                <th>Lend</th>
+                <th>Borrower</th>
+                <th>Requested Amount in Ether</th>
+                <th>Loan id</th>
+              </tr>
+                {this.props.loans.map((loan, i) => {
+                  return (
+                  
+                    <Loan key={i} loan={loan} />
+                
+                  )
+                })
+              }
+              </tbody>
+            </table>
             }
            
           </div>
@@ -31,7 +39,6 @@ class Lend extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log('in lend.js, state: ', state.web3.loans)
     return {
         loans: state.web3.loans
     }

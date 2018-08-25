@@ -66,3 +66,19 @@ code {
   height: 16px;
   margin-right: 10px;
 }
+
+table#loans {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#loans td, #loans th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+#loans tr:nth-child(even) {
+  background-color: #dddddd;
+}
