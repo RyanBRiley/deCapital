@@ -25,7 +25,7 @@ class Loan extends Component {
             <th><button type="submit" className="pure-button pure-button-primary">Fund this loan</button></th>
             <th>{this.props.loan.borrower}</th>
             <th>{store.getState().web3.web3Instance.fromWei(this.props.loan.amount, 'ether')}</th> 
-            <th>Loan id: {this.props.loan.id} </th>       
+            <th>{this.props.loan.id} </th>       
         </tr>
     )
   }
