@@ -2,7 +2,7 @@ pragma solidity ^0.4.7;
 
 contract deCapital {
     
-    uint loanCount;
+    uint public loanCount;
     mapping (uint => Loan) public loans;
     
     struct Loan {
@@ -35,4 +35,10 @@ contract deCapital {
         loans[_loanId].lender = msg.sender;
         loans[_loanId].borrower.transfer(loans[_loanId].amount);
     }
+
+    function getLoanCount() public view 
+            returns (uint loanCount_) 
+    {
+        loanCount_ = loanCount;
+    } 
 }

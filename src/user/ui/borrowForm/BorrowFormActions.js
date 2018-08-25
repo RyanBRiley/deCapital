@@ -1,5 +1,4 @@
 import LoanContract from '../../../../build/contracts/deCapital.json'
-// import { loginUser } from '../loginbutton/LoginButtonActions'
 import { browserHistory } from 'react-router'
 import store from '../../../store'
 
@@ -13,17 +12,15 @@ export function borrow(amount) {
 
     return function(dispatch) {
       
-      // Using truffle-contract we create the authentication object.
+      // Using truffle-contract, make loan object
       const loan = contract(LoanContract)
       loan.setProvider(web3.currentProvider)
 
-      // Declaring this for later so we can chain functions on Authentication.
+      // declaring loan instance
       var loanInstance
 
       // Get current ethereum wallet.
       web3.eth.getCoinbase((error, coinbase) => {
-        // console.log(coinbase)
-        // console.log(web3.eth.accounts[1])
         // Log errors, if any.
         if (error) {
           console.error(error);
@@ -33,10 +30,10 @@ export function borrow(amount) {
           loanInstance = instance
             console.log('Contract Deployed')
 
-          // Attempt to sign up user.
+          // Attempt to apply for loan
           loanInstance.apply(amount, {from: coinbase})
           .then(function(result) {
-            console.log('Appied')
+            console.log('Applied')
             // If no error, login user.
             return browserHistory.push('/Applied')
           })

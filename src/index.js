@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 import getWeb3 from './util/web3/getWeb3'
+// import getAllLoans from './util/web3/getAllLoans'
 
 // Layouts
 import App from './App'
@@ -13,21 +14,26 @@ import Borrow from './user/layouts/borrow/Application'
 import Lend from './user/layouts/lend/Lend'
 import Applied from './user/layouts/borrow/Applied'
 
-// Redux Store
+// Get redux store
 import store from './store'
 
-// Initialize react-router-redux.
+// start react-router-redux.
 const history = syncHistoryWithStore(browserHistory, store)
 
-// Initialize web3 and set in Redux.
+// Start web3 and place in redux store
 getWeb3
 .then(results => {
   console.log('Web3 initialized!')
+  
+  console.log('store: ', store.getState())
 })
 .catch((e) => {
   console.log('Error in web3 initialization.', e)
 })
 
+
+
+//react-router
 ReactDOM.render((
     <Provider store={store}>
       <Router history={history}>
