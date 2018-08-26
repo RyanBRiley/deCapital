@@ -8,7 +8,7 @@ class Loan extends Component {
 //   }
 
   handleClick(event) {
-      this.props.onClick(this.props.loan.id)
+      this.props.onClick(this.props.loan.id, this.props.loan.amount)
   }
 
   render() {

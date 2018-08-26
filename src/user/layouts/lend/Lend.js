@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
-import Loan from '../../ui/lend/Loan'
 import LendFormContainer from '../../ui/lend/LendFormContainer';
 
 class Lend extends Component {

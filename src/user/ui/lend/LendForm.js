@@ -2,23 +2,27 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import Loan from '../../ui/lend/Loan'
-import LendFormContainer from '../../ui/lend/LendFormContainer';
+
 
 class LendForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedLoan: ''
+      selectedLoan: '',
+      selectedLoanAmt: ''
     }
   }
-  onLoanClick(loanId) {
-    this.setState({selectedLoan: loanId})
+  onLoanClick(loanId, amt) {
+    this.setState(
+      {
+        selectedLoan: loanId,
+        selectedLoanAmt: amt
+      })
   }
   handleSubmit(event) {
     event.preventDefault()
-    // console.log('this.props.onFundClicl: ', this.props.onFundClick)
-    console.log('handleSubmit, this.state.selectedLoan: ',this.state.selectedLoan)
-    this.props.onLoanSubmit(this.state.selectedLoan)
+
+    this.props.onLoanSubmit(this.state.selectedLoan, this.state.selectedLoanAmt)
 }
   render() {
     return(

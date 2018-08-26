@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import Loan from './Loan'
 import { lend } from './LoanActions'
 import LendForm from './LendForm'
 
@@ -9,8 +8,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoanSubmit: (loanId) => {
-      dispatch(lend(loanId))
+    onLoanSubmit: (loanId, loanAmt) => {
+      dispatch(lend(loanId, loanAmt))
     }
   }
 }
