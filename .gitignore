@@ -1,4 +1,5 @@
 node_modules/
 build_webpack/
-.vscode
+.vscode/
 build/
+build/contracts/
