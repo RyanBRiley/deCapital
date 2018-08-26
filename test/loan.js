@@ -13,5 +13,4 @@ contract('Loan', function(accounts) {
       assert.equal(loanCount, 1, "The user was unable to apply for a loan");
     });
   });
-
 });
