@@ -13,6 +13,7 @@ import About from './layouts/about/About'
 import Borrow from './user/layouts/borrow/Application'
 import Lend from './user/layouts/lend/Lend'
 import Applied from './user/layouts/borrow/Applied'
+import Funded from './user/layouts/lend/Funded'
 
 // Get redux store
 import store from './store'
@@ -43,6 +44,7 @@ ReactDOM.render((
           <Route path="lend" component={Lend} />
           <Route path="about" component={About} />
           <Route path="applied" component={Applied} />
+          <Route path="funded" component={Funded} />
         </Route>
       </Router>
     </Provider>

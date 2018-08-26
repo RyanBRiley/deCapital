@@ -15,6 +15,7 @@ class LendForm extends Component {
     this.setState({selectedLoan: loanId})
   }
   handleSubmit(event) {
+    event.preventDefault()
     // console.log('this.props.onFundClicl: ', this.props.onFundClick)
     console.log('handleSubmit, this.state.selectedLoan: ',this.state.selectedLoan)
     this.props.onLoanSubmit(this.state.selectedLoan)
