@@ -6,7 +6,7 @@ const contract = require('truffle-contract')
 
 export function lend(loanId) {
   let web3 = store.getState().web3.web3Instance
-  console.log('web3 store in loanAction: ', store.getState().web3)
+  // console.log('web3 store in loanAction: ', store.getState().web3)
   
   // Double-check web3's status.
   if (typeof web3 !== 'undefined') {
@@ -15,7 +15,7 @@ export function lend(loanId) {
       // Using truffle-contract, make loan object
       const loan = contract(LoanContract)
       loan.setProvider(web3.currentProvider)
-
+      // console.log(loan)
       // declaring loan instance
       var loanInstance
       // Get current ethereum wallet.
@@ -25,10 +25,11 @@ export function lend(loanId) {
         if (error) {
           console.error(error);
         }
-       
-          
+        console.log('HHHHHEEEERRRE!!!')
+          // console.log(loan.deployed())
+          console.log('HHHHHEEEERRRE!!!2')
         loan.deployed().then(function(instance) {
-          
+         
           loanInstance = instance
             console.log('Contract Deployed in LoanAction')
 
