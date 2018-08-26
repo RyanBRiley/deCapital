@@ -1,6 +1,6 @@
 import store from '../../store'
 import Web3 from 'web3'
-import LoanContract from '../../../build/contracts/deCapital.json'
+import LoanContract from '../../../build/contracts/Loan.json'
 
 const contract = require('truffle-contract')
 

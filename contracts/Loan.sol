@@ -1,6 +1,6 @@
 pragma solidity ^0.4.7;
 
-contract deCapital {
+contract Loan {
     
     uint public loanCount;
     mapping (uint => Loan) public loans;

@@ -1,6 +1,6 @@
 var Ownable = artifacts.require("./zeppelin/ownership/Ownable.sol");
 var Killable = artifacts.require("./zeppelin/lifecycle/Killable.sol");
-var Loan = artifacts.require("./deCapital.sol");
+var Loan = artifacts.require("./Loan.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(Ownable);
