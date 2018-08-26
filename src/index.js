@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 import getWeb3 from './util/web3/getWeb3'
+import getUserAccount from './util/web3/getUserAccount'
 // import getAllLoans from './util/web3/getAllLoans'
 
 // Layouts
@@ -32,7 +33,15 @@ getWeb3
   console.log('Error in web3 initialization.', e)
 })
 
+getUserAccount
+.then(results => {
+  console.log('User Account Initialized: ', store.getState().web3)
+})
+.catch((e) => {
+  console.log('Cannot find User Account')
+})
 
+console.log('after promise, userAccount: ', store.getState().web3)
 
 //react-router
 ReactDOM.render((
