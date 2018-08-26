@@ -41,7 +41,6 @@ getUserAccount
   console.log('Cannot find User Account')
 })
 
-console.log('after promise, userAccount: ', store.getState().web3)
 
 //react-router
 ReactDOM.render((

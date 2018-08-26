@@ -2,7 +2,6 @@ import store from '../../store'
 
 export const ACCOUNT_INITIALIZED = 'ACCOUNT_INITIALIZED'
 function accountInitialized(results) {
-    console.log('in accountInitialized, resutls: ', results)
   return {
     type: ACCOUNT_INITIALIZED,
     payload: results
@@ -18,25 +17,19 @@ let getUserAccount = new Promise(function(resolve, reject) {
     // Check that web3 is defined
     if (typeof web3 !== 'undefined') {
       // Use Mist/MetaMask's provider.
-      var account
       web3.eth.getCoinbase((error, coinbase) => {
         // Log errors, if any.
-        console.log('in getUserAccout, coinbase: ', coinbase)
+
         if (error) {
           console.error(error);
         }
-        account = coinbase
-        console.log('ACCOUNT: ', coinbase)
+
         results = {
             userAccount: coinbase
           }
           resolve(store.dispatch(accountInitialized(results)))
-      })
-
-      console.log(account)
+      })      
       
-      
-
       console.log('User Account detected.');
 
      
