@@ -3,3 +3,4 @@ build_webpack/
 .vscode/
 build/
 build/contracts/
+*.swp
