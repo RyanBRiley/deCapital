@@ -18,6 +18,7 @@ import Funded from './user/layouts/lend/Funded'
 
 // Get redux store
 import store from './store'
+import getAllLoans from './util/web3/getAllLoans';
 
 // start react-router-redux.
 const history = syncHistoryWithStore(browserHistory, store)
@@ -26,11 +27,9 @@ const history = syncHistoryWithStore(browserHistory, store)
 getWeb3
 .then(results => {
   console.log('Web3 initialized!')
-  
-  // console.log('store: ', store.getState())
 })
 .catch((e) => {
-  console.log('Error in web3 initialization.', e)
+  console.log('Error in web3 initialization. ', e)
 })
 
 getUserAccount
@@ -39,6 +38,14 @@ getUserAccount
 })
 .catch((e) => {
   console.log('Cannot find User Account')
+})
+
+getAllLoans
+.then(results => {
+  console.log('Loans successfully loaded!: ', store.getState().web3.loans)
+})
+.catch((e) =>{
+  console.log('Error fetching loans. ', e)
 })
 
 

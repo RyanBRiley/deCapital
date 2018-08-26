@@ -1,4 +1,4 @@
-var Loan = artifacts.require("./Loan.sol");
+var Loan = artifacts.require("./DeCapital.sol");
 
 contract('Loan', function(accounts) {
   /*

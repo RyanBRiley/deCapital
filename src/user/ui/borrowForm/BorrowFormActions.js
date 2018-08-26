@@ -1,8 +1,18 @@
-import LoanContract from '../../../../build/contracts/Loan.json'
+import LoanContract from '../../../../build/contracts/DeCapital.json'
 import { browserHistory } from 'react-router'
 import store from '../../../store'
+import getAllLoans from '../../../util/web3/getAllLoans'
 
 const contract = require('truffle-contract')
+
+export const LOAN_ADDED = 'LOAN_ADDED'
+function loanAdded(results) {
+  return {
+    type: LOAN_ADDED,
+    payload: results
+  }
+}
+
 
 export function borrow(amount) {
   let web3 = store.getState().web3.web3Instance
@@ -34,8 +44,23 @@ export function borrow(amount) {
           loanInstance.apply(amount, {from: coinbase})
           .then(function(result) {
             console.log('Applied')
+            loanInstance.loanCount()
+            .then(_id => {
+            var results = {
+              loan: 
+              {
+                id: _id.toString(),
+                amount: web3.toWei(amount, 'ether'),
+                rate: 0,
+                borrower: coinbase,
+                lender: null
+              }
+            }
+            console.log(results)
+            store.dispatch(loanAdded(results))
             // If no error, login user.
             return browserHistory.push('/Applied')
+          })
           })
           .catch(function(result) {
               console.log('ERROR APPLYING: ', result)

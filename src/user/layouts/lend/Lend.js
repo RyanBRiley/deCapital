@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 
 import LendFormContainer from '../../ui/lend/LendFormContainer';
+// import getAllLoans from '../../../util/web3/getAllLoans';
+
+// getAllLoans
+// .then(results => {
+//   console.log('Loans successfully loaded!')
+// })
+// .catch((e) =>{
+//   console.log('Error fetching loans. ', e)
+// })
 
 class Lend extends Component {
   render() {

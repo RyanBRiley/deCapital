@@ -1,4 +1,4 @@
-import LoanContract from '../../../../build/contracts/Loan.json'
+import LoanContract from '../../../../build/contracts/DeCapital.json'
 import { browserHistory } from 'react-router'
 import store from '../../../store'
 

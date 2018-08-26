@@ -1,8 +1,6 @@
 import store from '../../store'
 import Web3 from 'web3'
-import LoanContract from '../../../build/contracts/Loan.json'
 
-const contract = require('truffle-contract')
 
 export const WEB3_INITIALIZED = 'WEB3_INITIALIZED'
 function web3Initialized(results) {
@@ -16,7 +14,6 @@ let getWeb3 = new Promise(function(resolve, reject) {
   // Wait for loading completion to avoid race conditions with web3 injection timing.
   window.addEventListener('load', function(dispatch) {
     var results
-    var allLoans = []
     var web3 = window.web3
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
@@ -24,37 +21,8 @@ let getWeb3 = new Promise(function(resolve, reject) {
       // Use Mist/MetaMask's provider.
       web3 = new Web3(web3.currentProvider)
 
-      const loanContract = contract(LoanContract)
-      loanContract.setProvider(web3.currentProvider)
-
-      // declaring loanContract instance
-      var loanInstance
-      loanContract.deployed().then((instance) => {
-        loanInstance = instance
-        loanInstance.loanCount().then((count) => {
-          for (var i = 0; i < count.toNumber(); i++) {
-            loanInstance.loans(i).then((loan) => allLoans.push(
-              {
-                id: loan.toString().split(',')[0],
-                amount: loan.toString().split(',')[1],
-                rate: loan.toString().split(',')[2],
-                borrower: loan.toString().split(',')[3],
-                lender: loan.toString().split(',')[4]
-          
-              })
-            )
-          }
-          // console.log('loanCount: ', count.toNumber())
-        })
-        console.log('Contract Deployed')
-        // console.log('allLoans: ', allLoans)
-
-        // resolve(store.dispatch(loansInitialized(results)))
-    })  
-
       results = {
-        web3Instance: web3,
-        loans: allLoans
+        web3Instance: web3
       }
 
       console.log('Injected web3 detected.');

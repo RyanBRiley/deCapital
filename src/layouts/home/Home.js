@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import store from '../../store'
 
 class Home extends Component {
@@ -11,8 +12,8 @@ class Home extends Component {
             <h3>Your decentralized credit and lending app</h3>
             <p>Powered by the Ethereum Blockchain</p>
             {
-            store.getState().web3.userAccount && 
-              <p>You are currently logged in as {store.getState().web3.userAccount}</p>
+            this.props.userAccount && 
+              <p>You are currently logged in as {this.props.userAccount}</p>
             }
           </div>
         </div>
@@ -21,4 +22,10 @@ class Home extends Component {
   }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    userAccount: state.web3.userAccount
+  }
+}
+
+export default connect(mapStateToProps)(Home)

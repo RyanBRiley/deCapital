@@ -1,6 +1,6 @@
 pragma solidity ^0.4.7;
 
-contract Loan {
+contract DeCapital {
     
     uint public loanCount;
     mapping (uint => Loan) public loans;
@@ -19,8 +19,9 @@ contract Loan {
         loanCount = 0;
     }
     
-    /*  Function allows users to ask for a specific amount in eth.
-        Amount is converted to wei 
+    /*  
+    Function allows users to ask for a specific amount in eth.
+    Amount is converted to wei 
     */
     function apply(uint _amount) public {
         emit Applied(loanCount);

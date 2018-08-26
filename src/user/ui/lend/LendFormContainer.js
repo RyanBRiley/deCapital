@@ -3,7 +3,9 @@ import { lend } from './LoanActions'
 import LendForm from './LendForm'
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    loans: state.web3.loans
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
