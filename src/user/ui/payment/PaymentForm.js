@@ -21,14 +21,14 @@ class Payment extends Component {
       return alert('Please enter an amount in Ether')
     }
 
-    this.props.onBorrowFormSubmit(this.state.amount)
+    this.props.onPaymentFormSubmit(this.props.loanId, this.state.amount)
   }
 
   render() {
     return(
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
-          <label htmlFor="name">Amount in Ether</label>
+          <label htmlFor="name">Payment Amount in Ether</label>
           <input id="amount" type="text" value={this.state.amount} onChange={this.onInputChange.bind(this)} placeholder="Amount" />
           <span className="pure-form-message">This is a required field.</span>
 

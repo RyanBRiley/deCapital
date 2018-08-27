@@ -15,6 +15,7 @@ import Borrow from './user/layouts/borrow/Application'
 import Lend from './user/layouts/lend/Lend'
 import Applied from './user/layouts/borrow/Applied'
 import Payment from './user/layouts/dashboard/Payment'
+import Paid from './user/layouts/dashboard/Paid'
 import Funded from './user/layouts/lend/Funded'
 import Dashboard from './user/layouts/dashboard/Dashboard'
 
@@ -64,6 +65,7 @@ ReactDOM.render((
           <Route path="funded" component={Funded} />
           <Route path="dashboard" component={Dashboard} />
           <Route path="payment/*" component={Payment} />
+          <Route path="paid" component={Paid} />
         </Route>
       </Router>
     </Provider>

@@ -64,7 +64,7 @@ contract DeCapital {
         public
         payable
     {
-        require(loans[_loanId].state == State.Disbursed, "Loan must not be in repayment");
+        require(loans[_loanId].state == State.Disbursed, "Loan must be in repayment");
         emit PaymentMade(_loanId);
         if (loans[_loanId].balance > msg.value) {
             loans[_loanId].balance = loans[_loanId].balance - msg.value;

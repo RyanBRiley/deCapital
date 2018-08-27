@@ -7,12 +7,12 @@ import getLentLoans from '../../../util/filters/getLentLoans';
 
 class Dashboard extends Component {
   onLoanClick() {
-    alert('Payment Made')
+    
   }
   handleSubmit(event) {
     event.preventDefault()
 
-    alert('payment made')
+    
 }
   borrowedLoans = getOwedLoans(this.props.loans, this.props.userAccount)
   lentLoans = getLentLoans(this.props.loans, this.props.userAccount)
