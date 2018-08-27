@@ -35,7 +35,7 @@ class Dashboard extends Component {
             <table id="loans" style={{ width: '100%'}}>
               <tbody>
               <tr>
-                <th>Payment Options</th>
+                <th>Payment Options (click below)</th>
                 <th>Lender</th>
                 <th>Original Amount in Ether</th>
                 <th>Interest Rate</th>

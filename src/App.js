@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 
 // Styles
 import './css/oswald.css'
@@ -34,6 +35,9 @@ class App extends Component {
             <Header />
           </ul>
           <Link to="/" className="pure-menu-heading pure-menu-link">deCapital</Link>
+          {this.props.userAccount && 
+          <Link to="/dashboard" className="pure-menu-heading pure-menu-link">{this.props.userAccount}</Link>
+          }
         </nav>
 
         {this.props.children}
@@ -42,4 +46,11 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    userAccount: state.web3.userAccount
+  }
+}
+
+export default connect(mapStateToProps)(App)
+

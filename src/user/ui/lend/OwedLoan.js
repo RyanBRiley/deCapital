@@ -15,7 +15,7 @@ class OwedLoan extends Component {
   render() {
     return(
         <tr>
-            <th><button className="pure-button pure-button-primary"><Link to={`/payment/${this.props.loan.id}`}>Make Payment</Link></button></th>
+            <th><Link to={`/payment/${this.props.loan.id}`} className="pure-menu-heading pure-menu-link">Make Payment</Link></th>
             <th>{this.props.loan.lender}</th>
             <th>{store.getState().web3.web3Instance.fromWei(this.props.loan.amount, 'ether')}</th> 
             <th>{this.props.loan.rate}</th>
