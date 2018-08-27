@@ -32,8 +32,10 @@ let getAllLoans = new Promise((resolve, reject) => {
               id: loan.toString().split(',')[0],
               amount: loan.toString().split(',')[1],
               rate: loan.toString().split(',')[2],
-              borrower: loan.toString().split(',')[3],
-              lender: loan.toString().split(',')[4]
+              balance: loan.toString().split(',')[3],
+              state: loan.toString().split(',')[4],
+              borrower: loan.toString().split(',')[5],
+              lender: loan.toString().split(',')[6]
         
             })
           )

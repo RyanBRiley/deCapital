@@ -29,7 +29,7 @@ class LendForm extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            {this.props.loans && 
+            {this.props.loans.filter((loan) => loan.state === '0').length > 0 && 
             <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
             <table id="loans" style={{ width: '100%'}}>
               <tbody>
@@ -37,11 +37,12 @@ class LendForm extends Component {
                 <th>Lend</th>
                 <th>Borrower</th>
                 <th>Requested Amount in Ether</th>
+                <th>Interest Rate</th>
                 <th>Loan id</th>
               </tr>
                 {this.props.loans.map((loan, i) => {
                   return (
-                  
+                    loan.state === '0' &&
                     <Loan key={i} loan={loan} buttonText="Fund this Loan" onClick={this.onLoanClick.bind(this)} />
                 
                   )
@@ -51,6 +52,7 @@ class LendForm extends Component {
             </table>
             </form>
             }
+            {this.props.loans.length === 0 && <p>Currently, there are no requested loans</p>}
            
           </div>
         </div>

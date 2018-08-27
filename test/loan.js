@@ -13,7 +13,7 @@ contract('Loan', function(accounts) {
     return Loan.deployed().then(function(instance) {
       loanInstance = instance;
 
-      return loanInstance.apply(20, {from: accounts[0]});
+      return loanInstance.apply(5, {from: accounts[0]});
     }).then(function() {
       return loanInstance.loanCount.call();
     }).then(function(loanCount) {
@@ -32,14 +32,24 @@ contract('Loan', function(accounts) {
   it("User should be able to lend Ether to loan", function() {
     return Loan.deployed().then(function(instance) {
       loanInstance = instance;
-
-      return loanInstance.apply(20, {from: accounts[0]});
-    }).then(function() {
-      return loanInstance.lend(0, {from: accounts[1], value: web3.toWei('20', 'ether')});
+      return loanInstance.lend(0, {from: accounts[1], value: web3.toWei('5', 'ether')});
     }).then(function() {
       return loanInstance.loans(0);
     }).then(function(loanData) {
-      assert.equal(loanData.toString().split(',')[4], accounts[1], "The user was unable to lend on a loan");
+      assert.equal(loanData.toString().split(',')[6], accounts[1], "The user was unable to lend on a loan");
+    });
+  });
+  /* The following tests the ability for a borrower
+   * to make a payment
+   */ 
+  it("Borrower should be able to make a payment on a loan", function() {
+    return Loan.deployed().then(function(instance) {
+      loanInstance = instance;
+      return loanInstance.makePayment(0, {from: accounts[0], value: web3.toWei('2', 'ether')});
+    }).then(function() {
+      return loanInstance.loans(0);
+    }).then(function(loanData) {
+      assert.isBelow(Number(loanData.toString().split(',')[3]), Number(web3.toWei('5', 'ether')), "The borrower was unable to make a payment");
     });
   });
 });

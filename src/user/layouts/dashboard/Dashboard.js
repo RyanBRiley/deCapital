@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import getOwedLoans from '../../../util/filters/getOwedLoans'
 import Loan from '../../ui/lend/Loan'
+import OwedLoan from '../../ui/lend/OwedLoan.js'
+import LentLoan from '../../ui/lend/LentLoan.js'
 import getLentLoans from '../../../util/filters/getLentLoans';
 
 class Dashboard extends Component {
@@ -26,7 +28,7 @@ class Dashboard extends Component {
             this.props.userAccount && 
               <p>You are currently logged in as {this.props.userAccount}</p>
             }
-            {this.borrowedLoans && 
+            {this.borrowedLoans.length > 0 && 
             <div>
             <br /><br />
             <h3>Loans you owe</h3>
@@ -34,15 +36,17 @@ class Dashboard extends Component {
             <table id="loans" style={{ width: '100%'}}>
               <tbody>
               <tr>
-                <th>Lend</th>
+                <th>Payment Options</th>
                 <th>Lender</th>
-                <th>Amount in Ether</th>
+                <th>Original Amount in Ether</th>
+                <th>Interest Rate</th>
+                <th>Balance</th>
                 <th>Loan id</th>
               </tr>
             {this.borrowedLoans.map((loan, i) => {
                   return (
-                  
-                    <Loan key={i} loan={loan} buttonText="Make Payment" onClick={this.onLoanClick.bind(this)} />
+                    loan.state === '1' &&
+                    <OwedLoan key={i} loan={loan} buttonText="Make Payment" onClick={this.onLoanClick.bind(this)} />
                 
                   )
                 })
@@ -52,30 +56,29 @@ class Dashboard extends Component {
             </form>
             </div>
             }
-            {this.lentLoans && 
+            {this.lentLoans.length > 0 && 
             <div>
             <br /><br />
             <h3>Loans you've lent</h3>
-            <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
             <table id="loans" style={{ width: '100%'}}>
               <tbody>
               <tr>
-                <th>Lend</th>
-                <th>Lender</th>
-                <th>Amount in Ether</th>
+                <th>Borrower</th>
+                <th>Original Amount in Ether</th>
+                <th>Interest Rate</th>
+                <th>Balance</th>
                 <th>Loan id</th>
               </tr>
             {this.lentLoans.map((loan, i) => {
                   return (
-                  
-                    <Loan key={i} loan={loan} buttonText="Check Status" onClick={this.onLoanClick.bind(this)} />
+                    loan.state === '1' &&
+                    <LentLoan key={i} loan={loan} />
                 
                   )
                 })
               }
               </tbody>
             </table>
-            </form>
             </div>
             }
           </div>

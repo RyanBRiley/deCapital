@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import store from '../../../store'
-class Loan extends Component {
+class OwedLoan extends Component {
   
 
 //   onInputChange(event) {
@@ -15,13 +15,14 @@ class Loan extends Component {
     return(
         <tr>
             <th><button type="submit" onClick={this.handleClick.bind(this)} className="pure-button pure-button-primary">{this.props.buttonText}</button></th>
-            <th>{this.props.loan.borrower}</th>
+            <th>{this.props.loan.lender}</th>
             <th>{store.getState().web3.web3Instance.fromWei(this.props.loan.amount, 'ether')}</th> 
             <th>{this.props.loan.rate}</th>
+            <th>{store.getState().web3.web3Instance.fromWei(this.props.loan.balance, 'ether')}</th>
             <th>{this.props.loan.id} </th>       
         </tr>
     )
   }
 }
 
-export default Loan
+export default OwedLoan

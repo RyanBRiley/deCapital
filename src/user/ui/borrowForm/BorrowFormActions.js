@@ -51,6 +51,8 @@ export function borrow(amount) {
                 id: _id.toString(),
                 amount: web3.toWei(amount, 'ether'),
                 rate: 0,
+                balance: web3.toWei(amount, 'ether'),
+                state: 0,
                 borrower: coinbase,
                 lender: null
               }
