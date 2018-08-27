@@ -6,5 +6,6 @@ module.exports = function(deployer) {
   deployer.deploy(Ownable);
   deployer.link(Ownable, Killable);
   deployer.deploy(Killable);
+  deployer.link(Killable, Loan);
   deployer.deploy(Loan)
 };

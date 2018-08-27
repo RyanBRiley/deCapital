@@ -1,6 +1,10 @@
 pragma solidity ^0.4.7;
 
-contract DeCapital {
+
+import "./zeppelin/lifecycle/Killable.sol";
+import "./zeppelin/ownership/Ownable.sol";
+
+contract DeCapital is Ownable, Killable{
     uint public loanCount;
     mapping (uint => Loan) public loans;
     
