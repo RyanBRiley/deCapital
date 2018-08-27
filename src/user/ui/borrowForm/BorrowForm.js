@@ -16,7 +16,7 @@ class BorrowForm extends Component {
   handleSubmit(event) {
     event.preventDefault()
 
-    if (this.state.amount.length < 2)
+    if (isNaN(this.state.amount))
     {
       return alert('Please enter an amount in Ether')
     }

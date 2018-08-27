@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { lend } from './LoanActions'
-import Loan from '../../ui/lend/Loan'
 
-import getAllLoans from '../../../util/web3/getAllLoans'
+import Loan from '../../ui/lend/Loan'
 
 
 class LendForm extends Component {
@@ -13,11 +11,6 @@ class LendForm extends Component {
       selectedLoan: '',
       selectedLoanAmt: ''
     }
-  }
-  componentDidMount() {
-    getAllLoans
-    .then(console.log('loans refetched'))
-    .catch((e) => console.log(e))
   }
   onLoanClick(loanId, amt) {
     this.setState(
@@ -29,14 +22,13 @@ class LendForm extends Component {
   handleSubmit(event) {
     event.preventDefault()
 
-    lend(this.state.selectedLoan, this.state.selectedLoanAmt)
+    this.props.onLoanSubmit(this.state.selectedLoan, this.state.selectedLoanAmt)
 }
   render() {
     return(
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            {console.log('this.props.loans: ', this.props.loans)}
             {this.props.loans && 
             <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
             <table id="loans" style={{ width: '100%'}}>
@@ -50,7 +42,7 @@ class LendForm extends Component {
                 {this.props.loans.map((loan, i) => {
                   return (
                   
-                    <Loan key={i} loan={loan} onClick={this.onLoanClick.bind(this)} />
+                    <Loan key={i} loan={loan} buttonText="Fund this Loan" onClick={this.onLoanClick.bind(this)} />
                 
                   )
                 })
@@ -66,8 +58,6 @@ class LendForm extends Component {
     )
   }
 }
-
-// export default LendForm
 const mapStateToProps = (state) => {
     return {
         loans: state.web3.loans

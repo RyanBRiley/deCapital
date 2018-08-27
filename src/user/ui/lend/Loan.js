@@ -14,7 +14,7 @@ class Loan extends Component {
   render() {
     return(
         <tr>
-            <th><button type="submit" onClick={this.handleClick.bind(this)} className="pure-button pure-button-primary">Fund this loan</button></th>
+            <th><button type="submit" onClick={this.handleClick.bind(this)} className="pure-button pure-button-primary">{this.props.buttonText}</button></th>
             <th>{this.props.loan.borrower}</th>
             <th>{store.getState().web3.web3Instance.fromWei(this.props.loan.amount, 'ether')}</th> 
             <th>{this.props.loan.id} </th>       

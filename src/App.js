@@ -12,6 +12,9 @@ class App extends Component {
     const Header = () => (
       <span>
         <li className="pure-menu-item">
+          <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
+        </li>
+        <li className="pure-menu-item">
           <Link to="/borrow" className="pure-menu-link">Borrow</Link>
         </li>
 

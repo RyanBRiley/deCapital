@@ -15,6 +15,7 @@ import Borrow from './user/layouts/borrow/Application'
 import Lend from './user/layouts/lend/Lend'
 import Applied from './user/layouts/borrow/Applied'
 import Funded from './user/layouts/lend/Funded'
+import Dashboard from './user/layouts/dashboard/Dashboard'
 
 // Get redux store
 import store from './store'
@@ -60,6 +61,7 @@ ReactDOM.render((
           <Route path="about" component={About} />
           <Route path="applied" component={Applied} />
           <Route path="funded" component={Funded} />
+          <Route path="dashboard" component={Dashboard} />
         </Route>
       </Router>
     </Provider>

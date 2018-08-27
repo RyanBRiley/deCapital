@@ -72,7 +72,6 @@ table#loans {
   border-collapse: collapse;
   width: 100%;
 }
-
 #loans td, #loans th {
   border: 1px solid #dddddd;
   text-align: left;
@@ -82,3 +81,21 @@ table#loans {
 #loans tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+
+table#loansOwed {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#loansOwed td, #loans th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+#loansOwed tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
