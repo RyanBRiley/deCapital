@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from '../../store'
 
 class Home extends Component {
   render() {

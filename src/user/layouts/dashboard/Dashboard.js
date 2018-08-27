@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from '../../../store'
 import getOwedLoans from '../../../util/filters/getOwedLoans'
 import Loan from '../../ui/lend/Loan'
 import getLentLoans from '../../../util/filters/getLentLoans';

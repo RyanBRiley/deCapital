@@ -1,7 +1,6 @@
 import LoanContract from '../../../../build/contracts/DeCapital.json'
 import { browserHistory } from 'react-router'
 import store from '../../../store'
-import getAllLoans from '../../../util/web3/getAllLoans'
 
 const contract = require('truffle-contract')
 
