@@ -20,6 +20,36 @@ contract('Loan', function(accounts) {
       assert.equal(loanCount, 1, "The user was unable to apply for a loan");
     });
   });
+  /*
+   * The following tests the functionality of the contract to 
+   * assign an interest rate. The rate applied should be between
+   * three and eight percent. This next text verifies that the rate
+   * is at least three
+   */
+  it("User should be able to assigned an interest rate of at least 3 percent", function() {
+    return Loan.deployed().then(function(instance) {
+      loanInstance = instance;
+
+      return loanInstance.loans(0)
+    }).then(function(loanData) {
+      assert.isAtLeast(Number(loanData.toString().split(',')[2]), 3, "The user was assigned an incorrect interest rate");   
+    });
+  });
+  /*
+   * The following tests the functionality of the contract to 
+   * assign an interest rate. The rate applied should be between
+   * three and eight percent. This next text verifies that the rate
+   * is at most
+   */
+  it("User should be able to assigned an interest rate of at least 3 percent", function() {
+    return Loan.deployed().then(function(instance) {
+      loanInstance = instance;
+
+      return loanInstance.loans(0)
+    }).then(function(loanData) {
+      assert.isAtMost(Number(loanData.toString().split(',')[2]), 8, "The user was assigned an incorrect interest rate");   
+    });
+  });
   /* 
    * The following tests the ability of a user to lend 
    * to a loan. It creates a loan by having an account
@@ -52,6 +82,23 @@ contract('Loan', function(accounts) {
       return loanInstance.loans(0);
     }).then(function(loanData) {
       assert.isBelow(Number(loanData.toString().split(',')[3]), Number(web3.toWei('5', 'ether')), "The borrower was unable to make a payment");
+    });
+  });
+/* The following tests the ability for a borrower
+   * to pay off a loan It takes the previously created loan
+   * and submits a payment to it that is greater than the balance. 
+   * It then checks that the state of the loan has been 
+   * set to "settled"  It also ensure that the logic to accept
+   * payments larger than the balance is working 
+   */ 
+  it("Borrower should be able to make a payment on a loan", function() {
+    return Loan.deployed().then(function(instance) {
+      loanInstance = instance;
+      return loanInstance.makePayment(0, {from: accounts[0], value: web3.toWei('6', 'ether')});
+    }).then(function() {
+      return loanInstance.loans(0);
+    }).then(function(loanData) {
+      assert.equal(Number(loanData.toString().split(',')[4]), 2, "The borrower was unable to make a payment");
     });
   });
 });
