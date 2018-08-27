@@ -41,7 +41,7 @@ contract('Loan', function(accounts) {
    * three and eight percent. This next text verifies that the rate
    * is at most
    */
-  it("User should be able to assigned an interest rate of at least 3 percent", function() {
+  it("User should be able to assigned an interest rate of at most 8 percent", function() {
     return Loan.deployed().then(function(instance) {
       loanInstance = instance;
 
@@ -69,7 +69,8 @@ contract('Loan', function(accounts) {
       assert.equal(loanData.toString().split(',')[6], accounts[1], "The user was unable to lend on a loan");
     });
   });
-  /* The following tests the ability for a borrower
+  /* 
+   * The following tests the ability for a borrower
    * to make a payment. It takes the previously created loan
    * and submits a payment to it. It then checks that the balance has
    * been reduced. 
@@ -84,21 +85,22 @@ contract('Loan', function(accounts) {
       assert.isBelow(Number(loanData.toString().split(',')[3]), Number(web3.toWei('5', 'ether')), "The borrower was unable to make a payment");
     });
   });
-/* The following tests the ability for a borrower
+  /* 
+   * The following tests the ability for a borrower
    * to pay off a loan It takes the previously created loan
    * and submits a payment to it that is greater than the balance. 
    * It then checks that the state of the loan has been 
    * set to "settled"  It also ensure that the logic to accept
    * payments larger than the balance is working 
    */ 
-  it("Borrower should be able to make a payment on a loan", function() {
+  it("Borrower should be able pay off a loan", function() {
     return Loan.deployed().then(function(instance) {
       loanInstance = instance;
       return loanInstance.makePayment(0, {from: accounts[0], value: web3.toWei('6', 'ether')});
     }).then(function() {
       return loanInstance.loans(0);
     }).then(function(loanData) {
-      assert.equal(Number(loanData.toString().split(',')[4]), 2, "The borrower was unable to make a payment");
+      assert.equal(Number(loanData.toString().split(',')[4]), 2, "The borrower was unable to pay off the loan");
     });
   });
 });

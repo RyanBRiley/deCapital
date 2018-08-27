@@ -36,6 +36,9 @@ class BorrowForm extends Component {
 
           <button type="submit" className="pure-button pure-button-primary">Apply</button>
         </fieldset>
+        <p>By applying to a loan, you agree to repay the full amount</p>
+        <p>and will be charged a simple interest rate between three and </p>
+        <p>eight percent, which will be added to the balance of the loans </p>
       </form>
     )
   }
