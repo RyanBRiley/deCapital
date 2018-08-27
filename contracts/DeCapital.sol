@@ -14,6 +14,7 @@ contract DeCapital {
     
     address public owner;
     uint public loanCount;
+    bool public emergency = false; //Circuit Breaker 
     mapping (uint => Loan) public loans;
     
     enum State {Requested, Disbursed, Settled}
@@ -37,6 +38,16 @@ contract DeCapital {
         owner = msg.sender;
     }
     
+    /* 
+    Stop in Emergency modifier adds a circuit
+    breaker. If something goes terribly wrong,
+    the owner can set the emergency member, 
+    halting operations
+    */
+    modifier stopInEmergency() { 
+        require(!emergency); 
+        _; 
+    }
     
     /*
     onlyOwner modifier ensures that the 
@@ -59,10 +70,17 @@ contract DeCapital {
     }
     
     /*
+    toggleEmergency function allows the owner to put
+    the contranct state in emergency, halting operations
+    */
+    function toggleEmergency() public onlyOwner {
+        emergency = !emergency;
+    }
+    /*
     Function allows users to ask for a specific amount in eth.
     Amount is converted to wei 
     */
-    function apply(uint _amount) public {
+    function apply(uint _amount) public stopInEmergency {
         uint _rate = calculateInterestRate();
         emit Applied(loanCount);
         loans[loanCount] = Loan({loanId: loanCount, 
@@ -83,6 +101,7 @@ contract DeCapital {
     function lend(uint _loanId) 
         public 
         payable 
+        stopInEmergency
     {
         require(loans[_loanId].state == State.Requested, "Loan must not be funded");
         emit Funded(_loanId);
@@ -98,6 +117,7 @@ contract DeCapital {
     function makePayment(uint _loanId)
         public
         payable
+        stopInEmergency
     {
         require(loans[_loanId].state == State.Disbursed, "Loan must be in repayment");
         emit PaymentMade(_loanId);
