@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import store from '../../../store'
+import {Link} from 'react-router'
 class OwedLoan extends Component {
   
 
@@ -14,7 +15,7 @@ class OwedLoan extends Component {
   render() {
     return(
         <tr>
-            <th><button type="submit" onClick={this.handleClick.bind(this)} className="pure-button pure-button-primary">{this.props.buttonText}</button></th>
+            <th><button className="pure-button pure-button-primary"><Link to={`/payment/${this.props.loan.id}`}>Make Payment</Link></button></th>
             <th>{this.props.loan.lender}</th>
             <th>{store.getState().web3.web3Instance.fromWei(this.props.loan.amount, 'ether')}</th> 
             <th>{this.props.loan.rate}</th>

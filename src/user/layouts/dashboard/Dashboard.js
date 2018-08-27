@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import getOwedLoans from '../../../util/filters/getOwedLoans'
-import Loan from '../../ui/lend/Loan'
 import OwedLoan from '../../ui/lend/OwedLoan.js'
 import LentLoan from '../../ui/lend/LentLoan.js'
 import getLentLoans from '../../../util/filters/getLentLoans';
@@ -46,7 +45,7 @@ class Dashboard extends Component {
             {this.borrowedLoans.map((loan, i) => {
                   return (
                     loan.state === '1' &&
-                    <OwedLoan key={i} loan={loan} buttonText="Make Payment" onClick={this.onLoanClick.bind(this)} />
+                    <OwedLoan key={i} loan={loan} />
                 
                   )
                 })
