@@ -40,7 +40,9 @@ contract('Loan', function(accounts) {
     });
   });
   /* The following tests the ability for a borrower
-   * to make a payment
+   * to make a payment. It takes the previously created loan
+   * and submits a payment to it. It then checks that the balance has
+   * been reduced. 
    */ 
   it("Borrower should be able to make a payment on a loan", function() {
     return Loan.deployed().then(function(instance) {
